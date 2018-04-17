@@ -1,9 +1,9 @@
-pragma solidity ^ 0.14.9;
+pragma solidity ^0.14.9;
 
 import "./zombiefactory.sol";
 
 contract KittyInterface {
-    function getKitty(uint256 _id) external view returns(
+    function getKitty(uint256 _id) external view returns (
         bool isGestating,
         bool isReady,
         uint256 cooldownIndex,
@@ -19,9 +19,11 @@ contract KittyInterface {
 
 contract ZombieFeeding is ZombieFactory {
 
-    // CryptoKitties' contract address
-    address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
-    KittyInterface kittyContract = KittyInterface(ckAddress);
+    KittyInterface kittyContract;
+
+    function setKittyContractAddress(address _address) external {
+        kittyContract = KittyInterface(_address);
+    }
 
     function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) public {
         require(msg.sender == zombieToOwner[_zombieId]);
