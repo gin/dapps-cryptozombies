@@ -4,6 +4,7 @@ contract HelloWorld {
 
 	function sayHello() public pure returns (string memory) {
 		// uhh.....
+		return "Hello World";
 	}
 
 	function myFavoriteNumber() public pure returns (uint) { 
